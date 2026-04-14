@@ -41,6 +41,9 @@ def root_test():
     ### Test the error-handling of the bisection method by repeating the test
     ### on the search interval [2,4].
     
+    ### Test the error-handling of the bisection method by repeating the test
+    ### on the search interval [4,2].
+    
     ### Test the root-finding function for applying Newton's method with an
     ### initial guess of 4 with an error tolerance of 1e-10.
     
@@ -66,11 +69,17 @@ def linalg_test():
 def regression_test():
     """Tests for the numerical regression and interpolation module."""
     
-    pass
+    # Define lists of test data
+    x = [0.9, 1.4, 2.4, 3.1, 4.6, 6.3]
+    y = [3.5, 2.4, 2.3, 1.4, 2.7, 4.5]
     
-    ### Tests for finding an interpolating polynomial
+    ### Initialize a polynomial fit object with the given test data. Use it to
+    ### find an interpolating polynomial for the data. Print the polynomial
+    ### and plot it alongside the given data.
     
-    ### Tests for finding a best-fit polynomial
+    ### Initialize another polynomial fit object with the given test data, but
+    ### this time use it to find the best-fit second-degree polynomial for the
+    ### data. Print the polynomial and plot it alongside the given data.
 
 #==============================================================================
 
