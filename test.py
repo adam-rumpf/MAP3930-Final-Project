@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 from Calculus.Differentiate import diff
 from Calculus.Integrate import integ
-from Linear_Algebra.Linear_System_Solver import linear_system_solve
+#from Linear_Algebra.Linear_System_Solver import linear_system_solve
 #from Regression_and_Interpolation.polynomial_fit import PolynomialFit, linear_regression, polynomial_regression
 from Root_Finding.Root import find_root
 
@@ -33,7 +33,7 @@ def test_differentiate():
     
     # Try calling with an invalid mode option
     try:
-        diff(f, 2, h=0.001, mode=4)
+        print("Mode 4 at x=2:", diff(f, 2, h=0.001, mode=4))
     except ValueError:
         print("mode=4 is an invalid option.")
 
@@ -69,7 +69,7 @@ def test_integrate():
     
     # Try calling with an invalid mode option
     try:
-        integ(f, 0, 2, n=100, mode=5)
+        print("Mode 5 on [0,3]:", integ(f, 0, 3, n=100, mode=5))
     except ValueError:
         print("mode=5 is an invalid option.")
     
@@ -132,22 +132,25 @@ def test_regression_interpolation():
 def test_root_finding():
     print("----- Testing Root.py -----")
 
-    f = lambda x: x**2 - 4
-    df = lambda x: 2 * x
+    # Define a test polynomial and its derivative
+    f = lambda x: -x**3 + 6*x**2 - 9*x + 7
+    df = lambda x: -3*x**2 + 12*x - 9
 
-    print("Bisection root of x^2 - 4 on [0,3]:", find_root(f, 0, 3))
-    print("Secant root of x^2 - 4 starting at x0=3:", find_root(f, 3))
-    print("Newton root of x^2 - 4 starting at x0=3:", find_root(f, df, 3))
-
-    g = lambda x: math.cos(x) - x
-    dg = lambda x: -math.sin(x) - 1
-
-    print("Bisection root of cos(x) - x on [0,1]:", find_root(g, 0, 1))
-    print("Newton root of cos(x) - x starting at x0=1:", find_root(g, dg, 1))
+    print("Bisection root on [4,5]:", find_root(f, 4, 5, tol=1e-10))
+    print("Bisection root on [5,4]:", find_root(f, 5, 4, tol=1e-10))
+    try:
+        print("Bisection root on [2,4]:", find_root(f, 2, 4, tol=1e-10))
+    except ValueError:
+        print("No root on [2,4].")
+    print("Secant root starting at x0=4:", find_root(f, 4, tol=1e-10))
+    print("Newton root starting at x0=4:", find_root(f, df, 4, tol=1e-10))
+    try:
+        print("Newton root starting at x0=3:", find_root(f, df, 3, tol=1e-10))
+    except ZeroDivisionError:
+        print("Derivative is zero at x=3.")
+    print("Secant root starting at x0=3:", find_root(f, 3, tol=1e-10))
 
     print()
-
-    input()
 
 
 def run_all_tests():
