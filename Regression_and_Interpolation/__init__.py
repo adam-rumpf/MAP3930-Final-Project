@@ -1,1 +1,1 @@
-from .Polynomial_Fit import PolynomialFit, linear_regression, polynomial_regression
+from .polynomial_fit import PolynomialFit, linear_regression, polynomial_regression

@@ -1,3 +1,10 @@
+import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 """
 Test.py
 
@@ -12,11 +19,10 @@ This script tests the functions in:
 import math
 import numpy as np
 
-from Calculus.Differentiate import diff
-from Calculus.Integrate import integ
-from Linear_Algebra.Linear_System_Solver import linear_system_solve
-from Regression_and_Interpolation.polynomial_fit import PolynomialFit, linear_regression, polynomial_regression
-from Root_Finding.Root import find_root
+from Calculus import diff, integ
+from Linear_Algebra import linear_system_solve
+from Regression_and_Interpolation import PolynomialFit, linear_regression, polynomial_regression
+from Root_Finding import find_root
 
 
 def test_differentiate():

@@ -1,1 +1,1 @@
-from .Root import bisection, newton, secant, find_root
+from .Root import find_root
