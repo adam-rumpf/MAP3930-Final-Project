@@ -1,2 +1,2 @@
-from .Differentiate import diff
-from .Integrate import integ
+from Differentiate import diff
+from Integrate import integ
