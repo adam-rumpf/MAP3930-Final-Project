@@ -115,6 +115,8 @@ def test_root_finding():
 
     print()
 
+    input()
+
 
 def run_all_tests():
     test_differentiate()
