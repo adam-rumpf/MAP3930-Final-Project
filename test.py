@@ -14,7 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from Calculus.Differentiate import diff
-#from Calculus.Integrate import integ
+from Calculus.Integrate import integ
 #from Linear_Algebra.Linear_System_Solver import linear_system_solve
 #from Regression_and_Interpolation.polynomial_fit import PolynomialFit, linear_regression, polynomial_regression
 #from Root_Finding.Root import find_root
@@ -25,10 +25,11 @@ def test_differentiate():
 
     f = lambda x: -x**3 + 6*x**2 - 9*x + 7
 
-    print("Forward difference of x^2 at x=2:", diff(f, 2, h=0.001, mode=0))
-    print("Backward difference of x^2 at x=2:", diff(f, 2, h=0.001, mode=1))
-    print("Central difference of x^2 at x=2:", diff(f, 2, h=0.001, mode=2))
-    print("Five-point difference of x^2 at x=2:", diff(f, 2, h=0.001, mode=3))
+    print("Exact derivative at x=2: 3")
+    print("Forward difference at x=2:", diff(f, 2, h=0.001, mode=0))
+    print("Backward difference at x=2:", diff(f, 2, h=0.001, mode=1))
+    print("Central difference at x=2:", diff(f, 2, h=0.001, mode=2))
+    print("Five-point difference at x=2:", diff(f, 2, h=0.001, mode=3))
     
     # Try calling with an invalid mode option
     try:
@@ -36,7 +37,7 @@ def test_differentiate():
     except ValueError:
         print("mode=4 is an invalid option.")
 
-    data = [(x, f(x)) for x in np.linspace(0.5, 3.5, 101)]
+    data = [(0.5+0.1*i, f(0.5+0.1*i)) for i in np.linspace(0.5, 3.5, 101)]
     ddata = diff(data)
     
     # Plot test data and its derivative
@@ -57,16 +58,26 @@ def test_differentiate():
 def test_integrate():
     print("----- Testing integrate.py -----")
 
-    f = lambda x: x**2
+    f = lambda x: -3*x**2 + 12*x - 9
 
-    print("Left Riemann integral of x^2 on [0,2]:", integ(f, 0, 2, n=100, mode=0))
-    print("Right Riemann integral of x^2 on [0,2]:", integ(f, 0, 2, n=100, mode=1))
-    print("Midpoint integral of x^2 on [0,2]:", integ(f, 0, 2, n=100, mode=2))
-    print("Trapezoidal integral of x^2 on [0,2]:", integ(f, 0, 2, n=100, mode=3))
-    print("Simpson integral of x^2 on [0,2]:", integ(f, 0, 2, n=100, mode=4))
+    print("Exact integral on [0,3]: 18")
+    print("Left Riemann integral on [0,3]:", integ(f, 0, 3, n=100, mode=0))
+    print("Right Riemann integral on [0,3]:", integ(f, 0, 3, n=100, mode=1))
+    print("Midpoint integral on [0,3]:", integ(f, 0, 3, n=100, mode=2))
+    print("Trapezoidal integral on [0,3]:", integ(f, 0, 3, n=100, mode=3))
+    print("Simpson integral on [0,3]:", integ(f, 0, 3, n=100, mode=4))
+    
+    # Try calling with an invalid mode option
+    try:
+        integ(f, 0, 2, n=100, mode=5)
+    except ValueError:
+        print("mode=5 is an invalid option.")
+    
+    # Try reversing the order
+    print("Left Riemann integral on [3,0]:", integ(f, 3, 0, n=100, mode=0))
 
-    data = [(0, 0), (1, 1), (2, 4)]
-    print("Integral from list data:", integ(data))
+    data = [(x, f(x)) for x in np.linspace(0, 3, 101)]
+    print("Integral from data on [0,3]:", integ(data))
 
     print()
 
@@ -138,8 +149,8 @@ def test_root_finding():
 
 
 def run_all_tests():
-    test_differentiate()
-    #test_integrate()
+    #test_differentiate()
+    test_integrate()
     #test_linear_system_solver()
     #test_regression_interpolation()
     #test_root_finding()
