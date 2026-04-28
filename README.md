@@ -32,9 +32,9 @@ This project is a Python numerical methods library that includes tools for diffe
 
 This project uses Python 3 and the following libraries:
 
-``bash
+```bash
 pip install numpy matplotlib
-``
+```
 
 ## Differentiate
 
@@ -48,9 +48,9 @@ The Differentiate.py module provides numerical differentiation methods for funct
 - Differentiation of a list of ordered pairs
 
 ### Function
-``python
+```python
 diff(f, x0=None, h=0.01, mode=0)
-``
+```
 
 ### Modes
 - 0 = forward difference
@@ -59,7 +59,7 @@ diff(f, x0=None, h=0.01, mode=0)
 - 3 = five-point difference
 
 ### Example
-``python
+```python
 from Calculus.Differentiate import diff
 
 f = lambda x: x**2
@@ -68,15 +68,15 @@ print(diff(f, 2, h=0.001, mode=0))
 print(diff(f, 2, h=0.001, mode=1))
 print(diff(f, 2, h=0.001, mode=2))
 print(diff(f, 2, h=0.001, mode=3))
-``
+```
 
 ## Example with Data
-``python
+```python
 from Calculus.Differentiate import diff
 
 data = [(0, 0), (1, 1), (2, 4), (3, 9)]
 print(diff(data))
-``
+```
 
 ## Integration
 
@@ -91,9 +91,9 @@ The Integrate.py module provides numerical integration methods for functions and
 - Integration of a list of ordered pairs
 
 ## Function
-``python
+```python
 integ(f, a=None, b=None, n=100, mode=3)
-``
+```
 
 ## Modes
 - 0 = left Riemann sum
@@ -103,7 +103,7 @@ integ(f, a=None, b=None, n=100, mode=3)
 - 4 = Simpson’s rule
 
 ## Example
-``python
+```python
 from Calculus.Integrate import integ
 
 f = lambda x: x**2
@@ -113,15 +113,15 @@ print(integ(f, 0, 2, n=100, mode=1))
 print(integ(f, 0, 2, n=100, mode=2))
 print(integ(f, 0, 2, n=100, mode=3))
 print(integ(f, 0, 2, n=100, mode=4))
-``
+```
 
 ## Example with Data
-``python
+```python
 from integrate import integ
 
 data = [(0, 0), (1, 1), (2, 4)]
 print(integ(data))
-``
+```
 
 ## Linear Algebra
 
@@ -136,33 +136,33 @@ If A is overdetermined, least squares regression is used.
 Underdetermined systems are not supported.
 
 ## Example
-``python
+```python
 from Linear_System_Solver import linear_system_solve
 
 A = [[2, 1], [1, 3]]
 b = [5, 6]
 
 print(linear_system_solve(A, b))
-``
+```
 
 ## Least Squares Example
-``python
+```python
 from Linear_System_Solver import linear_system_solve
 
 A = [[1, 1], [1, 2], [1, 3]]
 b = [1, 2, 2]
 
 print(linear_system_solve(A, b))
-``
+```
 
 ## Regression and Interpolation
 
 The RegressionInterpolation.py module contains tools for polynomial regression, linear regression, and polynomial interpolation.
 
 ## Main Class
-``python
+```python
 PolynomialFit
-``
+```
 
 ## Features
 - Linear regression
@@ -174,7 +174,7 @@ PolynomialFit
 - Returning the polynomial as a readable string
 
 ## Example: Linear Regression
-``python
+```python
 from RegressionInterpolation import PolynomialFit
 
 data = [(0, 1), (1, 3), (2, 5), (3, 7)]
@@ -184,10 +184,10 @@ model.linear_regression()
 print(model.get_coefficients())
 print(model.polynomial_string())
 print(model.evaluate(4))
-``
+```
 
 ## Polynomial Regression Example
-``python
+```python
 from RegressionInterpolation import PolynomialFit
 
 data = [(0, 1), (1, 2), (2, 5)]
@@ -197,10 +197,10 @@ model.polynomial_regression(2)
 print(model.get_coefficients())
 print(model.polynomial_string())
 print(model.evaluate(3))
-``
+```
 
 ## Polynomial Interpolation Example
-``python
+```python
 from RegressionInterpolation import PolynomialFit
 
 data = [(0, 1), (1, 2), (2, 5)]
@@ -209,10 +209,10 @@ model = PolynomialFit(data)
 model.polynomial_interpolation()
 print(model.get_coefficients())
 print(model.polynomial_string())
-``
+```
 
 ## Plot Fitted Curve Example
-``python
+```python
 from RegressionInterpolation import PolynomialFit
 
 data = [(0, 1), (1, 2), (2, 5)]
@@ -220,10 +220,10 @@ model = PolynomialFit(data)
 
 model.polynomial_regression(2)
 model.plot(title="Polynomial Fit", xlabel="x", ylabel="y")
-``
+```
 
 ## Standalone Function Example
-``python
+```python
 from RegressionInterpolation import linear_regression, polynomial_regression
 
 x = [0, 1, 2, 3]
@@ -231,7 +231,7 @@ y = [1, 3, 5, 7]
 
 print(linear_regression(x, y))
 print(polynomial_regression(x, y, 2))
-``
+```
 
 ## Root Finding
 
@@ -243,44 +243,44 @@ The Root.py module provides numerical root-finding methods.
 - Secant method
 
 ## Function
-``python
+```python
 find_root(f, *args, tol=1e-6, max_iter=100)
-``
+```
 
 ## Example: bisection
-``python
+```python
 from Root import find_root
 
 f = lambda x: x**2 - 4
 print(find_root(f, 0, 3))
-``
+```
 
 ## Example: secant
-``python
+```python
 from Root import find_root
 
 f = lambda x: x**2 - 4
 print(find_root(f, 3))
-``
+```
 
 ## Example: Newton’s method
-``python
+```python
 from Root import find_root
 
 f = lambda x: x**2 - 4
 df = lambda x: 2*x
 
 print(find_root(f, df, 3))
-``
+```
 
 ## Testing
 
 The Test.py script is used to test all of the modules in the project.
 
 ## Run the test script
-``python
+```python
 python Test.py
-``
+```
 
 ## Error Handling
 
